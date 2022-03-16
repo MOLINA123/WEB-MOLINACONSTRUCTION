@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Visítanos{% endblock %}
+
+{% block content %}
+ {% for visita in visita  %}
+<section class="page-section cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <div class="cta-inner text-center rounded">
+          <h2 class="section-heading mb-5">
+            <span class="section-heading-upper">{{visita.mensaje_llamado}}</span>
+            <span class="section-heading-lower">{{visita.submensaje_llamado}}</span>
+          </h2>
+          <ul class="list-unstyled list-hours mb-5 text-left mx-auto">
+            <li class="list-unstyled-item list-hours-item d-flex">
+             {{visita.dias_laborable}}
+              <span class="ml-auto">{{visita.horario}}</span>
+            </li>
+            <li class="list-unstyled-item list-hours-item d-flex">
+
+              Sábado
+              
+              <span class="ml-auto">{{visita.horario_sabado}}</span>
+            </li>
+            <li class="list-unstyled-item list-hours-item d-flex">
+              Domingos
+              <span class="ml-auto">En la web</span>
+            </li>
+          </ul>
+          <p class="address mb-5">
+            <em>
+              <strong>{{visita.direccion}}</strong>
+              <br>
+              {{visita.pais_ciudad}}
+            </em>
+          </p>
+          <p class="mb-0">
+            <small>
+              <em> {{visita.llamada_accion}}</em>
+            </small>
+            <br>
+            {{visita.telefofo}}
+            <br>
+            {{visita.celular}}
+            
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endfor %} 
+{% endblock %}
