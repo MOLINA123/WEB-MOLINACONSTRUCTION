@@ -123,7 +123,10 @@ venv.bak/
 # mypy
 .mypy_cache/
 .dmypy.json
+/email_settings.json
+/secrets.json
 dmypy.json
+
 
 # Pyre type checker
 .pyre/
