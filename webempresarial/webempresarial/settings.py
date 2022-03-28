@@ -2,14 +2,13 @@
 import os
 import json
 
-import environ
+
 
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 
 
-env = environ.Env()
-environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +19,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = 'django-insecure-=b+_2j5i!qgytzz&-p=qz$g9y$^3eie83iiaxy+!@_ef4@71&p'
-SECRET_KEY = os.environ.get('SECRET_KEY')
+
+
+with open(os.path.join(BASE_DIR, '../secrets.json')) as secrets_file:
+    secrets = json.load(secrets_file)
+
+def get_secret(setting, secrets=secrets):
+    """Get secret setting or fail with ImproperlyConfigured"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        raise ImproperlyConfigured("Set the {} setting".format(setting))
+
+
+SECRET_KEY = get_secret('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = get_secret('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -84,20 +96,6 @@ WSGI_APPLICATION = 'webempresarial.wsgi.application'
 #Database
 #https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-
-
-
-
-
-with open(os.path.join(BASE_DIR, '../secrets.json')) as secrets_file:
-    secrets = json.load(secrets_file)
-
-def get_secret(setting, secrets=secrets):
-    """Get secret setting or fail with ImproperlyConfigured"""
-    try:
-        return secrets[setting]
-    except KeyError:
-        raise ImproperlyConfigured("Set the {} setting".format(setting))
 
 
 
