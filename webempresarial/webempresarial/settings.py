@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #SECRET_KEY = 'django-insecure-=b+_2j5i!qgytzz&-p=qz$g9y$^3eie83iiaxy+!@_ef4@71&p'
 
 
-with open(os.path.join(BASE_DIR, '../secrets.json')) as secrets_file:
+with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
     secrets = json.load(secrets_file)
 
 def get_secret(setting, secrets=secrets):
@@ -200,7 +200,7 @@ EMAIL_USE_TLS = True
 """
 
 
-EMAIL_SETTINGS_FILE = os.path.join(BASE_DIR, '../email_settings.json')
+EMAIL_SETTINGS_FILE = os.path.join(BASE_DIR, 'email_settings.json')
 
 with open(EMAIL_SETTINGS_FILE) as data_file:
     email_settings = json.load(data_file)

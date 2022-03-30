@@ -1,0 +1,8 @@
+{
+    "EMAIL_BAKEND":"django.core.mail.backends.smtp.EmailBackend",
+    "EMAIL_HOST":"smtp.gmail.com",
+    "EMAIL_USE_TLS":true,
+    "EMAIL_PORT":587,
+    "EMAIL_HOST_USER":"molinaconstruction2021@gmail.com",
+    "EMAIL_HOST_PASSWORD":"Mosan#12345"
+}
